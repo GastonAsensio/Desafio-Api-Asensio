@@ -3,6 +3,7 @@ const productFile = './productFile.json'
 
 class Manager { /// SAVE
     createProduct = async (product) => {
+        if (!product.title || !product.price) return { status: "error", message: "missing Fields" };
         try{
             if(fs.existsSync(productFile)){
                 let data = await fs.promises.readFile(productFile, 'utf-8')
@@ -22,6 +23,29 @@ class Manager { /// SAVE
         }
     }
 
+    modifyById = async (id, obj) => {
+        if (!id) return { status: "error", message: "Indique el Id por favor" };
+        if (fs.existsSync(this._pathToFile)) {
+          let data = await fs.promises.readFile(this._pathToFile, "utf-8");
+          let products = JSON.parse(data);
+          let productId = products.findIndex((prod) => prod.id === id);
+          if (productId !== -1) {
+            products[productId] = {
+              ...products[productId],
+              id: id,
+              title: obj.title,
+              price: obj.price,
+              thumbnail: obj.thumbnail,
+            };
+            await fs.promises.writeFile(this._pathToFile, JSON.stringify(products, null, 2));
+            return { status: "success", message: "Producto Modificado" };
+          }
+          return { status: "error", message: "Producto no Encontrado" };
+        } else {
+          return { status: "error", message: "Ocurrio un error" };
+        }
+      }
+
     getById = async(id) => {
         if (!id) return {status: 'error', message:'se requiere ID'}
         if (fs.existsSync(productFile)){
@@ -39,7 +63,7 @@ class Manager { /// SAVE
         if (fs.existsSync(productFile)){
             let data = await fs.promises.readFile(productFile, 'utf-8')
             let products = JSON.parse(data)
-            return {status: 'Perfecto', message: 'Base de datos eliminada'}
+            return {status: 'Perfecto', message: products}
     } else {
         return {status: 'error', message: err.message}
     }

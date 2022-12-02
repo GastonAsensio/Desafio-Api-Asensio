@@ -8,5 +8,5 @@ app.use(express.json());
 app.use("/api/productos", productsRouter);
 
 app.listen(PORT, () => {
-  console.log(`>>>>>  Server Up! In port: ${PORT} <<<<<`);
+  console.log(` Server Up! Port: ${PORT} !`);
 });

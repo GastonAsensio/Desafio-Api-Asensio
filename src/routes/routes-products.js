@@ -3,12 +3,6 @@ const productsRouter = express.Router();
 const Manager = require("../manager.js");
 const manager = new Manager("src/productFile.json");
 
-const midProducts = (req, res, next) => {
-  const { title, price, thumbnail } = req.body;
-  if (!title || !price || !thumbnail) return res.status(400).send({ err: "This data is required!" });
-  next();
-};
-
 productsRouter.get("/", async (req, res) => {
   res.send(await manager.getAll());
 });

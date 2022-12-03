@@ -25,7 +25,7 @@ class Manager { /// SAVE
 
     modifyById = async (id, obj) => {
         if (!id) return { status: "error", message: "Indique el Id por favor" };
-        if (fs.existsSync(this._pathToFile)) {
+        if (fs.existsSync(productFile)) {
           let data = await fs.promises.readFile(productFile, "utf-8");
           let products = JSON.parse(data);
           let productId = products.findIndex((prod) => prod.id === id);
@@ -35,7 +35,7 @@ class Manager { /// SAVE
               id: id,
               title: obj.title,
               price: obj.price,
-              thumbnail: obj.thumbnail,
+              url: obj.url,
             };
             await fs.promises.writeFile(productFile, JSON.stringify(products, null, 2));
             return { status: "success", message: "Producto Modificado" };

@@ -51,7 +51,7 @@ class Manager { /// SAVE
         if (fs.existsSync(productFile)){
             let data = await fs.promises.readFile(productFile, 'utf-8')
             let products = JSON.parse(data)
-            let product = product.find(product => product.id === id)
+            let product = products.find(product => product.id === id)
             if (product) return {status: 'Perfecto', message: product}
             return {status:'error', message: 'No se reconoce el ID'} 
         } else {

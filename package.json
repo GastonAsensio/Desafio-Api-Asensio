@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "express": "^4.18.2"
-  }
+  },
+  "name": "desafio-api4-asensio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GastonAsensio/Desafio-Api-Asensio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GastonAsensio/Desafio-Api-Asensio/issues"
+  },
+  "homepage": "https://github.com/GastonAsensio/Desafio-Api-Asensio#readme",
+  "description": ""
 }

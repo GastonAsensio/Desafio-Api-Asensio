@@ -76,7 +76,7 @@ class Manager { /// SAVE
             await fs.promises.unlink(productFile, JSON.stringify())
             return {status: 'Perfecto', message: 'base de datos eliminada'}
 
-}
+}}
 
     deleteById = async (id) => {
         if (!id) return {status: 'error', message: 'Necesita un ID'}
@@ -90,8 +90,6 @@ class Manager { /// SAVE
             return {status: 'error', message: err.message}
         }
     }
-
-}
 }
 
 module.exports = Manager
